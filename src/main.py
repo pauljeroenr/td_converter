@@ -25,9 +25,6 @@ def parse_args():
 def main():
     args = parse_args()
 
-    print(args.script_path)
-    print(args.sql_style)
-
     td_sql = Path(args.script_path).read_text()
     td_sql = td_sql.lower()
 
@@ -37,7 +34,10 @@ def main():
         temp_sql = bigquery.type_converter(temp_sql)
         temp_sql = bigquery.comparison_converter(temp_sql)
     else:
+        print("#######################################################################")
         print("Only Bigquery is yet supported")
+        print("#######################################################################")
+        return
 
     new_file = re.sub(r"[^\/]+$", "converted.sql", args.script_path)
     Path(new_file).write_text(temp_sql)
@@ -51,6 +51,8 @@ def main():
     print("3) qualify can not be used in bigquery")
     print("3) use ROWNUMBER with PARTITION BY instead")
     print("###########################################################################")
+
+    return
 
 
 if __name__ == "__main__":

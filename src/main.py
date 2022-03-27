@@ -1,4 +1,6 @@
 import argparse
+from pathlib import Path
+import bigquery
 
 
 def parse_args():
@@ -25,6 +27,17 @@ def main():
 
     print(args.script_path)
     print(args.sql_style)
+
+    td_sql = Path(args.script_path).read_text()
+    td_sql = td_sql.replace("\n", "")
+
+    if args.sql_style == "bigquery":
+        converted_sql = bigquery.select_converter(txt)
+    else:
+        print("Only Bigquery is yet supported")
+
+    # this overwrites. fix that
+    Path(args.script_path).write_text(converted_sql)
 
 
 if __name__ == "__main__":

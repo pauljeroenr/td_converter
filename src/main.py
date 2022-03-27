@@ -43,13 +43,13 @@ def main():
     Path(new_file).write_text(temp_sql)
 
     print("###########################################################################")
-    print("Hinweis was noch geaendert werden muss")
-    print("1) Alias von Subqueries koennen nicht in der Query benutzt werden")
-    print("1) Statt Subquery besser als CTE-Konstrukt einbauen")
-    print("2) Select Top funktioniert nicht in Bigquery")
-    print("2) Stattdessen am Ende der Query ein LIMIT einbauen")
-    print("3) Qualify kann nicht in Bigquery genutzt werden")
-    print("3) Stattdessen mit Rownumber denselben Effekt erzielen")
+    print("The following parts wont be changed yet")
+    print("1) Alias of subqueries can not be used")
+    print("1) Use CTE instead of subqueries")
+    print("2) select TOP does not work in bigquery")
+    print("2) use LIMIT at the end of the query")
+    print("3) qualify can not be used in bigquery")
+    print("3) use ROWNUMBER with PARTITION BY instead")
     print("###########################################################################")
 
 
